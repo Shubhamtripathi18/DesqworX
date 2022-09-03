@@ -9,7 +9,7 @@ const spaceTypeSchema = new mongoose.Schema({
 
     },
     createdBy: {
-        type: ObjectId
+        type: ObjectId   //admin or sub admin
 
     },
     city: {

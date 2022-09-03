@@ -1,5 +1,4 @@
-// role:{          //accountant:{ 
-                           
+// role:{          //accountant:{                        
 // "id"
 // "name"
 // "location"
@@ -20,8 +19,7 @@
 
 
 // role_permission_rel:{
-
-    //     roleId   {_rId1}
+//     roleId   {_rId1}
 //     PermissionId  //{_id1,_id2,}
 // }
 
