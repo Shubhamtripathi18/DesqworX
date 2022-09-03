@@ -122,7 +122,7 @@ const updateSpaceType = async function (req, res) {
             return
         }
 
-        const { desks, city, location, price, availability, facilities ,plan,features,membership} = req.body
+        // const { desks, city, location, price, availability, facilities ,plan,features,membership} = spaceType
 
         
         // const updateData = { desks, city, location, price, availability, facilities,plan,features,membership }

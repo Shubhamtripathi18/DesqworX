@@ -60,7 +60,6 @@ const createAdmin = async (req, res) => {
 
         }
 
-        console.log(req.validate)
 
         const adminCreated = await adminModel.create(requestBody)
         res.status(201).send({ status: true, message: "Success", data: adminCreated })
@@ -106,7 +105,7 @@ const adminLogin = async (req, res) => {
         }
         const token = jwt.sign({ id: admin._id }, 'viper');
         res.setHeader("x-api-key", token);
-        return res.status(200).send({ 'status': true, message: "Success", data: token });
+        return res.status(200).send({ 'status': true, message: "Success" });
 
     } catch (error) {
         return res.status(500).send({

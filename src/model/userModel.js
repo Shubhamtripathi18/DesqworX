@@ -29,20 +29,6 @@ const userSchema = new mongoose.Schema({
         }
     },
 
-    companyDetail: {
-        companyName: {
-            type: String
-        },
-        companyAddress: {
-            type: String
-        },
-        companyGST: {
-            type: String
-        },
-        companyPAN: {
-            type: String
-        }  
-}
 },
      { timestamps: true });
 module.exports = mongoose.model('userRegister', userSchema)

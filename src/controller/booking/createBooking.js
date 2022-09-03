@@ -1,5 +1,5 @@
 
-const bookingModel = require('../model/bookingModel');
+const bookingModel = require('../../model/bookingModel');
 
 const isValid = function (value) {
     if (typeof value === "undefined" || value == null) return false;

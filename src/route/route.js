@@ -1,24 +1,25 @@
 const express= require('express')
 const router = express.Router()
 const {registerUser,updateUserDetails} = require('../controller/userController');
-const {booking,getBookingDetails} = require('../controller/bookingController');
-const {directory,getDirectoryDetails} = require('../controller/directoryController')
+// const {booking,getBookingDetails} = require('../controller/bookingController');
+// const {directory,getDirectoryDetails} = require('../controller/directoryController')
 const {spaceType,getSpaceDetails,updateSpaceType} = require('../controller/spaceTypeController')
 const {createAdmin,adminLogin} = require('../controller/admin/adminController')
+const {getAdminDetails} = require('../controller/admin/getAdminController')
 const {authentication} = require('../middleware/middleware')
-
+const {registerCompany} = require('../controller/company/createCompanyController')
 
 
 router.post('/register', registerUser);
 router.put('/updateUser/:id',updateUserDetails)
 
+router.post('/registerCompany',registerCompany)
+// router.post('/booking', booking);
+// router.get('/getBookingDetails',getBookingDetails);
 
-router.post('/booking', booking);
-router.get('/getBookingDetails',getBookingDetails);
 
-
-router.post('/directory', directory);
-router.get('/getDirectoryDetails', getDirectoryDetails);
+// router.post('/directory', directory);
+// router.get('/getDirectoryDetails', getDirectoryDetails);
 
 
 
@@ -30,6 +31,7 @@ router.put('/updateSpaceDetails/:spaceType',authentication, updateSpaceType);
 
 router.post('/createAdmin',createAdmin)
 router.post('/adminLogin',adminLogin)
+router.get('/adminDetails/:_id',getAdminDetails)
 
 
 module.exports = router

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const adminSchema = new mongoose.Schema({
 
@@ -35,7 +36,12 @@ const adminSchema = new mongoose.Schema({
     password: {
         type: String,
         trim: true
+    },
+    company:{
+        type : ObjectId,
+        ref : "company"
     }
+ 
 
 }, { timestamps: true });
 

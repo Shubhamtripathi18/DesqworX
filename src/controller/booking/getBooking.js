@@ -1,14 +1,5 @@
 
-const bookingModel = require('../model/bookingModel/bookingModel');
-
-// const isValid = function (value) {
-//     if (typeof value === "undefined" || value == null) return false;
-//     if (typeof value === "string" && value.trim().length === 0) return false;
-//     return true;
-// };
-
-
-
+const bookingModel = require('../../model/bookingModel');
 
 
 const getBookingDetails = async function (req, res) {
@@ -98,4 +89,4 @@ const getBookingDetails = async function (req, res) {
 
 
 
-module.exports = { booking, getBookingDetails }
+module.exports = { getBookingDetails }
