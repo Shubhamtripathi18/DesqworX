@@ -15,10 +15,10 @@ const spaceType = async function (req, res) {
     try {
         let spaceType = req.body
 
-        // let id = req.params.Id;
-        // if (req.validate !== id) {
-        //     return res.status(401).send({ status: false, message: "Not Authorized" });
-        // }
+        let id = req.params.Id;
+        if (req.validate !== id) {
+            return res.status(401).send({ status: false, message: "Not Authorized" });
+        }
 
         if (Object.keys(spaceType) == 0) {
             return res.status(400).send({ status: false, msg: "spaceTypeDetails must be provided" });
@@ -121,11 +121,6 @@ const updateSpaceType = async function (req, res) {
             res.status(400).send({ status: false, message: 'please provide data for updation' })
             return
         }
-
-        // const { desks, city, location, price, availability, facilities ,plan,features,membership} = spaceType
-
-        
-        // const updateData = { desks, city, location, price, availability, facilities,plan,features,membership }
 
         const updateSpaceType = await spaceTypeModel.findOneAndUpdate({ _id: spaceType }, { ...req.body }, { new: true })
 

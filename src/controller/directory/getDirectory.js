@@ -1,4 +1,4 @@
-const directoryModel = require('../model/directoryModel');
+const directoryModel = require('../../model/directoryModel');
 
 // const isValid = function (value) {
 //     if (typeof value === "undefined" || value == null) return false;

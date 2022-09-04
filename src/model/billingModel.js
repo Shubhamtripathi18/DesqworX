@@ -10,7 +10,7 @@ const billingSchema = new mongoose.Schema({
     },
     paymentMethod: {
         type: String,
-        enum: [NEFT, IMPS, RTGS]
+        enum: ["NEFT", "IMPS", "RTGS"]
     },
     totalAmount:{
         type: Number
@@ -49,4 +49,4 @@ const billingSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model('booking', bookingSchema)
+module.exports = mongoose.model('billing', billingSchema)

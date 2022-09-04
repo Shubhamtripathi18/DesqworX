@@ -1,4 +1,4 @@
-const billingModel = require('../model/billingModel');
+const billingModel = require('../../model/billingModel');
 
 const isValid = function (value) {
     if (typeof value === "undefined" || value == null) return false;

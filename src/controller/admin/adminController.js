@@ -13,7 +13,7 @@ const createAdmin = async (req, res) => {
         if (!isValidRequestBody(requestBody)) {
             return res.status(400).send({ status: false, message: "Invalid request parameters. Please provide Admin details" })
         }
-        const { title, adminName, phone, email, password } = req.body
+        const { title, adminName, role, city, location, phone, email, password } = req.body
 
         if (!isValid(title)) {
             return res.status(400).send({ status: false, message: 'title is required' })
@@ -26,6 +26,23 @@ const createAdmin = async (req, res) => {
         if (!isValid(adminName)) {
             return res.status(400).send({ status: false, message: 'adminName is required' })
         }
+
+
+        if (!isValid(role)) {
+            return res.status(400).send({ status: false, message: 'role is required' })
+        }
+
+
+        if (!isValid(city)) {
+            return res.status(400).send({ status: false, message: 'city is required' })
+        }
+
+
+        if (!isValid(location)) {
+            return res.status(400).send({ status: false, message: 'location is required' })
+        }
+
+
         if (!isValid(phone)) {
             return res.status(400).send({ status: false, message: 'phone is required' })
         }
@@ -70,7 +87,7 @@ const createAdmin = async (req, res) => {
 }
 
 
- 
+
 
 const adminLogin = async (req, res) => {
     try {
@@ -80,7 +97,7 @@ const adminLogin = async (req, res) => {
             return res.status(400).send({ status: false, message: "Invalid request parameters. Please provide Admin details" })
         }
 
-        
+
         const { email, password } = req.body;
         if (!isValid(email)) {
             return res.status(400).send({ status: false, message: 'email is required' })
@@ -90,7 +107,7 @@ const adminLogin = async (req, res) => {
 
         }
 
-        
+
         if (!isValid(password)) {
             return res.status(400).send({ status: false, message: 'password is required' })
         }

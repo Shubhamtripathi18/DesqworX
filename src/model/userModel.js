@@ -26,9 +26,14 @@ const userSchema = new mongoose.Schema({
         newPassword: {
             type: String,
             trim: true
+        },
+
+        company: {
+            type: String,
+
         }
     },
-
 },
-     { timestamps: true });
+    {timestamps: true});
+
 module.exports = mongoose.model('userRegister', userSchema)

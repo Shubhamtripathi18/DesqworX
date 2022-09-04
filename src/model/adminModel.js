@@ -14,8 +14,8 @@ const adminSchema = new mongoose.Schema({
         trim: true,
         unique: true,
     },
-    role: [{type: String}],
-        // enum:["super_admin","delhi_sub-admin","gurgaon_sub-admin"]
+    role: [{ type: String }],
+    // enum:["super_admin","delhi_sub-admin","gurgaon_sub-admin"]
     city: {
         type: String,
     },
@@ -35,12 +35,8 @@ const adminSchema = new mongoose.Schema({
     password: {
         type: String,
         trim: true
-    },
-    company:{
-        type : ObjectId,
-        ref : "company"
     }
- 
+
 
 }, { timestamps: true });
 
