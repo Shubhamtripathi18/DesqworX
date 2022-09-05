@@ -1,19 +1,25 @@
 const jwt = require("jsonwebtoken");
+ 
+
+///didnt require model
 
 const authentication = async function (req, res, next) {
     try {
-      let userId = req.params.userId;
-      if (!userId) return res.send({ msg: "enter the userId" });
-  
-      let userID = await User.findById(userId);
-      if (!userID) return res.send({ msg: "entered id not Found in DB" });
-  //--------------------------------
+      let _id = req.params._id;  //getiing registteID
+      
+      if(!_id){
+        return res.send("provide id")
+      }
+    
+  //-------------------------------------------------------------------------------
       let token = req.headers["x-auth-token"];
       if (!token)
         return res.status(401).send({ status: false, msg: "enter the token" });
   
-      let decoded = jwt.verify(token, "secretKEY");
+      let decoded = jwt.verify(token, "viper");
       req.decoded = decoded;
+      console.log(req.decoded);
+
       if (!decoded) return res.send({ msg: "invalid token" });
   
       next();
@@ -27,8 +33,8 @@ const authentication = async function (req, res, next) {
   
   const Authorization= async (req, res, next) => {
     try {
-      if (eq.decoded.userId != req.params.userId)
-     
+      if  (req.decoded._id!= req.params._id)
+
         return res
           .status(403)
           .send({ msg: "Authorization failed u dont have access" });

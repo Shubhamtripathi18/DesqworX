@@ -2,7 +2,7 @@ const spaceTypeModel = require('../model/spaceTypeModel');
 const jwt = require('jsonwebtoken')
 // const moment = require("moment")
 // const ObjectId = require('../validator/validator');
-const adminModel = require('../model/adminModel');
+const adminModel = require('../model/staffModel');
 
 const isValid = function (value) {
     if (typeof value === "undefined" || value == null) return false;

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-const adminSchema = new mongoose.Schema({
+const staffSchema = new mongoose.Schema({
 
 
     title: {
@@ -10,18 +10,16 @@ const adminSchema = new mongoose.Schema({
     },
     adminName: {
         type: String,
+
+
         required: true,
         trim: true,
         unique: true,
     },
-    role: [{ type: String }],
-    // enum:["super_admin","delhi_sub-admin","gurgaon_sub-admin"]
-    city: {
-        type: String,
+    role: {
+        type: ObjectId
     },
-    location: {
-        type: String
-    },
+
     phone: {
         type: Number,
         trim: true,
@@ -40,4 +38,4 @@ const adminSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model('adminRegister', adminSchema)
+module.exports = mongoose.model('adminRegister', staffSchema)

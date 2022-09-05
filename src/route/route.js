@@ -7,23 +7,25 @@ const { updateBooking } = require('../controller/booking/updateBooking');
 const { directory } = require('../controller/directory/createDirectory')
 const { getDirectoryDetails } = require('../controller/directory/getDirectory')
 const { spaceType, getSpaceDetails, updateSpaceType } = require('../controller/spaceTypeController')
-const { createAdmin, adminLogin } = require('../controller/admin/adminController')
-const { getAdminDetails } = require('../controller/admin/getAdminController')
-const { authentication } = require('../middleware/middleware')
+const { createStaff, staffLogin} = require('../controller/staff/staffController')
+const { getStaffDetails } = require('../controller/staff/getStaffController')
+const { authentication,Authorization } = require('../middleware/middleware')
 const { registerCompany } = require('../controller/company/createCompanyController')
 const { billing } = require('../controller/billing/createBilling')
 const { getBillingList } = require('../controller/billing/billingList')
-const { createRole, getRoleDetails ,updateRoles,login} = require('../controller/roleController')
+const { createRole, getRoleDetails ,updateRoles,login} = require('../controller/role/roleController')
 
 
 router.post('/register', registerUser);
 router.put('/updateUser/:id', updateUserDetails)
 
-
 router.post('/createRole', createRole)
-router.get('/getRoleDetails', getRoleDetails)
-router.put('/updaterole/:id',updateRoles)
 router.post('/loginRole',login)
+router.get('/getRoleDetails', getRoleDetails)
+// router.put('/updaterole/:id',authentication,updateRoles)
+router.put('/updaterole/:_id',authentication,Authorization,updateRoles)
+
+
 
 router.post('/registerCompany', registerCompany)
 
@@ -48,9 +50,9 @@ router.put('/updateSpaceDetails/:spaceType', authentication, updateSpaceType);
 
 
 
-router.post('/createAdmin', createAdmin)
-router.post('/adminLogin', adminLogin)
-router.get('/adminDetails/:_id', getAdminDetails)
+router.post('/createStaff', createStaff)
+router.post('/staffLogin', staffLogin)
+router.get('/staffDetal/:_id', getStaffDetails)
 
 
 module.exports = router

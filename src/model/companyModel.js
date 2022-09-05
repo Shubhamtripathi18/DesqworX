@@ -14,7 +14,7 @@ const companySchema = new mongoose.Schema({
     },
     companyPAN: {
         type: String
-    },
+    }
 
 
  }, {timestamps: true});

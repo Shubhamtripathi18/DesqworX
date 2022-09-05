@@ -1,5 +1,5 @@
-const roleModel = require('../model/roleModel');
-const { isValid, isValidRequestBody } = require('../validator/validator');
+const roleModel = require('../../model/roleModel');
+const { isValid, isValidRequestBody } = require('../../validator/validator');
 // const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -11,43 +11,17 @@ const createRole = async (req, res) => {
         if (!isValidRequestBody(requestBody)) {
             return res.status(400).send({ status: false, message: "Invalid request parameters. Please provide Admin details" })
         }
-        const { role, name, location, descriptions, email, password } = req.body
-
-        // if (!isValid(id)) {
-        //     return res.status(400).send({ status: false, message: 'id is required' })
-        // }
+        const { role, descriptions } = req.body
 
         if (!isValid(role)) {
             return res.status(400).send({ status: false, message: 'role is required' })
         }
-        if (!isValid(name)) {
-            return res.status(400).send({ status: false, message: 'name is required' })
-        }
-
-        if (!isValid(location)) {
-            return res.status(400).send({ status: false, message: 'location is required' })
-        }
-
+      
         if (!isValid(descriptions)) {
             return res.status(400).send({ status: false, message: 'descriptions is required' })
         }
 
-        if (!isValid(email)) {
-            return res.status(400).send({ status: false, message: 'email is required' })
-        }
-        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-            return res.status(400).send({ status: false, message: 'Email should be valid email' })
-
-        }
-
-        const emailAlreadyUsed = await roleModel.findOne({ email })
-        if (emailAlreadyUsed) {
-            return res.status(400).send({ status: false, message: `${email} is already registered` })
-        }
-
-        if (!isValid(password)) {
-            return res.status(400).send({ status: false, message: 'password is required' })
-        }
+      
 
 
         const roleCreated = await roleModel.create(requestBody)
@@ -63,13 +37,13 @@ const login = async function (req, res) {
     let data = req.body;
     let email = data.email;
     let password = data.password;
-    let userId = req.params
+
     let result = await roleModel.findOne({ email: email, password: password })
     if (!result) {
         return res.status(404).send({ status: false, msg: "Invalid User Credentials,please Check..!!" })
     }
     // res.send(result)
-    let payload = { userId: result._id };
+    let payload = {_id:result._id};
     let token = jwt.sign(payload, "viper");
     res.setHeader("x-auth-token", token);
     res.send({ status: true, msg: "User Successfully LoggedIn", tokenData: token })
@@ -92,11 +66,12 @@ const getRoleDetails = async function (req, res) {
 
 
 
-
 const updateRoles = async function (req, res) {
     try {
         const requestBody = req.body
-        const roleId = req.params.id
+        const{role,name,email,password,location,descriptions} = requestBody
+        const roleId= req.params
+      
 
         if (Object.keys(req.body) == 0) {
             res.status(400).send({ status: false, message: 'please provide data for updation' })
@@ -109,17 +84,27 @@ const updateRoles = async function (req, res) {
             
         }
 
-        if (roleId != isroleIdPresent) {
-            return res.status(401).send({ status: false, message: "You are not authorized" })
-        }
+        // if (roleId != isroleIdPresent) {
+        //     return res.status(401).send({ status: false, message: "You are not authorized" })
+        // }
 
+        // if (!isValidRequestBody(requestBody)) {
+        //     res.status(400)
+        //         .send({ status: false, message: "Please provide some data to update this Book" });
+        //     return;
+        // }
         if (!isValidRequestBody(requestBody)) {
-            res.status(400)
-                .send({ status: false, message: "Please provide some data to update this Book" });
-            return;
+    return res.status(400).send({ status: false, message: "Please provide some data to update this Role" });
+            
         }
 
-        const updaterole = await roleModel.findOneAndUpdate({ _id: roleId }, { new: true })
+        const updaterole = await roleModel.findOneAndUpdate({ _id: roleId },
+            {role:role,
+            name: name,
+            email:email,
+            password:password,
+            location:location,
+            descriptions:descriptions}, { new: true })
 
         return res.status(200).send({ status: true, message: "Rolls updated successfully", data: updaterole })
     }
@@ -134,5 +119,4 @@ const updateRoles = async function (req, res) {
 
 
 
-
-module.exports = { createRole, getRoleDetails, updateRoles, login }
+module.exports = { createRole,login, getRoleDetails, updateRoles}
