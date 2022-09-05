@@ -18,4 +18,4 @@ const roleModelSchema = new mongoose.Schema({
  
      { timestamps: true });
 
-module.exports = mongoose.model('createRoleModel', roleModelSchema)
+module.exports = mongoose.model('roles', roleModelSchema)

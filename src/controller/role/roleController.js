@@ -21,9 +21,6 @@ const createRole = async (req, res) => {
             return res.status(400).send({ status: false, message: 'descriptions is required' })
         }
 
-      
-
-
         const roleCreated = await roleModel.create(requestBody)
         res.status(201).send({ status: true, message: "Success", data: roleCreated })
     }

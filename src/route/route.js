@@ -52,7 +52,7 @@ router.put('/updateSpaceDetails/:spaceType', authentication, updateSpaceType);
 
 router.post('/createStaff', createStaff)
 router.post('/staffLogin', staffLogin)
-router.get('/staffDetal/:_id', getStaffDetails)
+router.get('/staffDetail/:_id', getStaffDetails)
 
 
 module.exports = router

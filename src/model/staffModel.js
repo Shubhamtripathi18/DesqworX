@@ -8,16 +8,15 @@ const staffSchema = new mongoose.Schema({
         type: String,
         enum: ["Mr", "Miss", "Mrs"]
     },
-    adminName: {
+    staffName: {
         type: String,
-
-
         required: true,
         trim: true,
-        unique: true,
+       
     },
     role: {
-        type: ObjectId
+        type: ObjectId,
+        ref:"roles"
     },
 
     phone: {
@@ -38,4 +37,4 @@ const staffSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model('adminRegister', staffSchema)
+module.exports = mongoose.model('staffRegister', staffSchema)
